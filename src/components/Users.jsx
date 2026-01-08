@@ -1,21 +1,34 @@
 import { useEffect, useState } from "react";
 
-const Users = () => {
- const [data, setData] = useState([]);
+function Users() {
+  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+
+    fetch("https://dummyjson.com/users/6")
       .then(res => res.json())
-      .then(setData);
-  }, []);
+      .then(setUser);
+
+    document.title = `Count: ${count}`;
+
+    console.log("Count updated:", count);
+
+    return () => {
+      console.log("Component unmounted");
+    };
+  }, [count]);
 
   return (
-    <ul>
-      {data.map(item => (
-        <li key={item.id}>{item.name}</li>
-      ))}
-    </ul>
+    <div>
+      <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count + 1)}>+</button>
+
+      <hr />
+
+      {user && <p>User: {user.firstName}</p>}
+    </div>
   );
 }
 
-export default Users
+export default Users;

@@ -5,7 +5,7 @@ import Users from './components/Users'
 const App = () => {
   return (
     <div>
-      <ComponentDidMount/>
+      {/* <ComponentDidMount/> */}
       <Users/>
     </div>
   )
